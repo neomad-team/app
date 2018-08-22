@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "author": "neomad.org",
+  "description": "Mobile geolocalisation app for Neomad",
+  "homepage": "https://github.com/neomad-team/app#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neomad-team/app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neomad-team/app/issues"
+  },
+  "keywords": [
+    "mobile"
+  ],
+  "devDependencies": {
+    "nativescript": "^4.3.0-2018-08-22-12135"
+  }
+}
