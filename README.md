@@ -1,19 +1,7 @@
-# app
+# app.neomad.org
 
-Mobile geolocalisation app for neomad.org
+Mobile geolocalisation app built to enhance position tracking for neomad.org users
 
 ## Install
 
-- check your node version and use LTS (long-term support)
-`brew install node && brew link node`
-
-- install nativescript CLI
-`npm install -g nativescript`
-
-- check if tns (Telerik NativeScript) works
-`tns`
-
-- set you mac config
-`ruby -e "$(curl -fsSL https://www.nativescript.org/setup/mac)"`
-
-if Windows, change for mac or visit (setup windows)[https://docs.nativescript.org/start/quick-setup#windows].
+Follow the (advanced setup for macOS)[https://docs.nativescript.org/start/ns-setup-os-x#nativescript-advanced-setup-macos]
