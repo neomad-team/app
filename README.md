@@ -4,7 +4,7 @@ Mobile geolocalisation app built to enhance position tracking for neomad.org use
 
 ## Install
 
-app.neomad.org is built with (react-native)[https://facebook.github.io/react-native/]
+app.neomad.org is built with [react-native](https://facebook.github.io/react-native/)
 
 ## Commands
 
