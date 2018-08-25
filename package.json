@@ -1,21 +1,24 @@
 {
   "name": "app",
-  "version": "1.0.0",
-  "author": "neomad.org",
-  "description": "Mobile geolocalisation app for Neomad",
-  "homepage": "https://github.com/neomad-team/app#readme",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/neomad-team/app.git"
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "build-ios": "react-native run-ios",
+    "build-android": "react-native run-android",
+    "test": "jest"
   },
-  "bugs": {
-    "url": "https://github.com/neomad-team/app/issues"
+  "dependencies": {
+    "react": "16.4.1",
+    "react-native": "0.56.0"
   },
-  "keywords": [
-    "mobile"
-  ],
   "devDependencies": {
-    "nativescript": "^4.3.0-2018-08-22-12135"
+    "babel-jest": "23.4.2",
+    "babel-preset-react-native": "5.0.2",
+    "jest": "23.5.0",
+    "react-test-renderer": "16.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

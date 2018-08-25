@@ -4,4 +4,16 @@ Mobile geolocalisation app built to enhance position tracking for neomad.org use
 
 ## Install
 
-Follow the (advanced setup for macOS)[https://docs.nativescript.org/start/ns-setup-os-x#nativescript-advanced-setup-macos]
+app.neomad.org is built with (react-native)[https://facebook.github.io/react-native/]
+
+## Commands
+
+- To run your app on iOS:
+   - `npm run ios`
+   or
+   - Open ios/app.xcodeproj in Xcode
+   - Hit the Run button
+
+- To run your app on Android:
+   - Have an Android emulator running (quickest way to get started), or a device connected
+   - `npm run android`
