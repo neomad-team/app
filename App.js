@@ -3,8 +3,9 @@ import { View } from 'react-native'
 
 import HeaderApp from './components/Header/HeaderApp'
 import Instruction from './components/Text/Instruction'
+import GeoButton from './components/Buttons/GeoButton'
 
-import styles from './static/commons'
+import styles from './styles/commons'
 
 export default class App extends Component {
   render () {
@@ -12,6 +13,7 @@ export default class App extends Component {
       <View style={styles.app}>
         <HeaderApp />
         <View style={styles.body}>
+          <GeoButton />
           <Instruction />
         </View>
       </View>
