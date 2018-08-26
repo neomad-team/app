@@ -1,3 +1,7 @@
+# Built files
+ios
+android
+
 # OSX
 #
 .DS_Store

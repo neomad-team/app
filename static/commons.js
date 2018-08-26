@@ -1,11 +1,14 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  container: {
+  app: {
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  },
+  body: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    alignItems: 'center'
   },
   welcome: {
     fontSize: 20,
