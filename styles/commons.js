@@ -10,10 +10,5 @@ export default StyleSheet.create({
   body: {
     flex: 1,
     marginTop: 40
-  },
-  instructions: {
-    textAlign: 'center',
-    color: color.text,
-    marginBottom: 5
   }
 })
