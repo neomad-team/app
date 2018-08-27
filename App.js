@@ -3,6 +3,7 @@ import { View } from 'react-native'
 
 import HeaderApp from './components/Header/HeaderApp'
 import CommunityButton from './components/Buttons/CommunityButton'
+import LoginForm from './components/Login/LoginForm'
 import LoginButton from './components/Buttons/LoginButton'
 import Watch from './components/Text/Watch'
 
@@ -41,6 +42,7 @@ export default class App extends Component {
       <View style={styles.app}>
         <HeaderApp userLogged={this.state.userLogged} />
         <View>
+          <LoginForm />
           <LoginButton _authorize={this._userLogged} />
         </View>
         <View style={styles.body}>

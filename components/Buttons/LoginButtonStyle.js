@@ -4,7 +4,7 @@ export const style = {
   button: {
     backgroundColor: color.main,
     margin: 20,
-    padding: 20,
+    padding: 10,
     borderRadius: 100
   },
   icon: {
