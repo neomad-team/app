@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 
 import HeaderApp from './components/Header/HeaderApp'
-import GeoButton from './components/Buttons/GeoButton'
+import CommunityButton from './components/Buttons/CommunityButton'
+import LoginButton from './components/Buttons/LoginButton'
 import Watch from './components/Text/Watch'
 
 import styles from './styles/commons'
@@ -15,24 +16,37 @@ export default class App extends Component {
     this.state = {
       lat: null,
       long: null,
-      authorized: false
+      userLogged: false,
+      communityMode: false
     }
 
-    this._authorize = this._authorize.bind(this)
+    this._userLogged = this._userLogged.bind(this)
+    this._authorized = this._authorized.bind(this)
   }
 
-  _authorize () {
+  _userLogged () {
     this.setState({
-      authorized: !this.state.authorized
+      userLogged: !this.state.userLogged
+    })
+  }
+
+  _authorized () {
+    this.setState({
+      communityMode: !this.state.communityMode
     })
   }
 
   render () {
     return (
       <View style={styles.app}>
-        <HeaderApp authorized={this.state.authorized} />
+        <HeaderApp userLogged={this.state.userLogged} />
+        <View>
+          <LoginButton _authorize={this._userLogged} />
+        </View>
         <View style={styles.body}>
-          <GeoButton _authorize={this._authorize} />
+          <CommunityButton
+            communityMode={this.state.communityMode}
+            _authorized={this._authorized} />
           <Watch />
         </View>
       </View>

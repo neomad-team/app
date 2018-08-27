@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
 import { Button } from 'react-native-elements'
 
-import { style } from './GeoButtonStyle'
+import { style } from './LoginButtonStyle'
 
-export default class GeoButton extends Component {
-
-  constructor (props) {
-    super(props)
-}
+export default class LoginButton extends Component {
 
   render () {
     return (
       <Button
         icon={style.icon}
-        title='Authorize geolocalisation'
+        title='User sign in'
         buttonStyle={style.button}
         textStyle={style.text}
         onPress={this.props._authorize}

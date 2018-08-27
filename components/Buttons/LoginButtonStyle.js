@@ -9,7 +9,7 @@ export const style = {
   },
   icon: {
     color: color.white,
-    name: 'gps-fixed',
+    name: 'person',
     size: 30
   },
   text: {
