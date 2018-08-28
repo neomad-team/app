@@ -4,7 +4,6 @@ import { View } from 'react-native'
 import HeaderApp from './components/Header/HeaderApp'
 import CommunityButton from './components/Buttons/CommunityButton'
 import LoginForm from './components/Login/LoginForm'
-import LoginButton from './components/Buttons/LoginButton'
 import Watch from './components/Text/Watch'
 
 import styles from './styles/commons'
@@ -21,14 +20,7 @@ export default class App extends Component {
       communityMode: false
     }
 
-    this._userLogged = this._userLogged.bind(this)
     this._authorized = this._authorized.bind(this)
-  }
-
-  _userLogged () {
-    this.setState({
-      userLogged: !this.state.userLogged
-    })
   }
 
   _authorized () {
@@ -43,7 +35,6 @@ export default class App extends Component {
         <HeaderApp userLogged={this.state.userLogged} />
         <View>
           <LoginForm />
-          <LoginButton _authorize={this._userLogged} />
         </View>
         <View style={styles.body}>
           <CommunityButton

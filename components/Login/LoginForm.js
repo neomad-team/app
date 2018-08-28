@@ -1,17 +1,44 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+
+import FieldEmail from './FieldEmail'
+import FieldPassword from './FieldPassword'
+import LoginButton from '../Buttons/LoginButton'
+
+import { style } from './LoginFormStyle'
 
 export default class LoginForm extends Component {
 
+  constructor () {
+    super()
+
+    this.state = {
+      user: null,
+      email: null,
+      password: null
+    }
+
+    this._postForm = this._postForm.bind(this)
+  }
+
+  _postForm () {
+    this.setState({
+      user: !this.state.user
+    })
+  }
+
   render () {
     return (
-      <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <FormLabel>Email</FormLabel>
-        <FormInput />
-        <FormLabel>Password</FormLabel>
-        <FormInput />
-        <FormValidationMessage>It seems your email or Password not working</FormValidationMessage>
+      <View>
+
+        <View>
+          <FieldEmail _onChangeText={(email) => this.setState({email})} />
+          <FieldPassword _onChangeText={(password) => this.setState({password})} />
+        </View>
+
+        <View style={style.button}>
+          <LoginButton _postForm={this._postForm} />
+        </View>
       </View>
     )
   }

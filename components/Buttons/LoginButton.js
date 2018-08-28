@@ -12,7 +12,7 @@ export default class LoginButton extends Component {
         title='User sign in'
         buttonStyle={style.button}
         textStyle={style.text}
-        onPress={this.props._authorize}
+        onPress={this.props._postForm}
       />
     )
   }

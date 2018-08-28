@@ -5,7 +5,8 @@ export const style = {
     backgroundColor: color.main,
     margin: 20,
     padding: 10,
-    borderRadius: 100
+    borderRadius: 100,
+    width: 210
   },
   icon: {
     color: color.white,
