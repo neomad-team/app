@@ -10,7 +10,9 @@ export default class FieldEmail extends Component {
     return (
       <View>
         <FormLabel>Email</FormLabel>
-        <FormInput onChangeText={this.props._onChangeText} />
+        <FormInput
+          onChangeText={this.props._onChangeText}
+          autoCapitalize='none' />
         <FormValidationMessage>{content.error.email}</FormValidationMessage>
       </View>
     )
