@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
+import FormData from 'FormData'
 
 import FieldEmail from './FieldEmail'
 import FieldPassword from './FieldPassword'
@@ -14,8 +15,8 @@ export default class LoginForm extends Component {
 
     this.state = {
       user: null,
-      email: null,
-      password: null,
+      email: 'john@doe.com',
+      password: 'johndoe',
       error: null,
       response: null
     }
@@ -24,36 +25,43 @@ export default class LoginForm extends Component {
   }
 
   _postForm () {
-    const url = 'https://neomad.org/api/login/'
-    const data = {
-      email: this.state.email,
-      password: this.state.password
+    const url = 'http://localhost:5000/api/login/'
+
+    const formData = new FormData()
+    formData.append('email', this.state.email)
+    formData.append('password', this.state.password)
+
+    const postData = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
+      },
+      body: formData
     }
 
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((response) => console.warn(response))
-    .catch(error => {
-      console.error('error', error)
-    })
+    fetch(url, postData)
+      .then(response => response.json())
+      .then(responseJson => this.setState({user: responseJson}))
+      .catch(error => { console.error(error) })
   }
 
   render () {
-    return (
-      <View>
+    let username = ''
+    if (this.state.user) {
+      username = this.state.user.username
+    }
 
+    return (
+
+      <View>
+        <Text>{username}</Text>
         <View>
           <FieldEmail
-            _onChangeText={(email) => this.setState({email})}
+            _onChangeText={(email) => this.setState({email: email})}
             value={this.state.email} />
           <FieldPassword
-            _onChangeText={(password) => this.setState({password})}
+            _onChangeText={(password) => this.setState({password: password})}
             value={this.state.password} />
         </View>
 
