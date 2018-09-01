@@ -11,7 +11,7 @@ export default class LoginForm extends Component {
         <FormInput />
         <FormLabel>Password</FormLabel>
         <FormInput />
-        <FormValidationMessage>It seems your email or Password not working</FormValidationMessage>
+        <FormValidationMessage>Check your email and password</FormValidationMessage>
       </View>
     )
   }
