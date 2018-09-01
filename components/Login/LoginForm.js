@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import FormData from 'FormData'
 
 import FieldEmail from './FieldEmail'
@@ -14,11 +14,9 @@ export default class LoginForm extends Component {
     super()
 
     this.state = {
-      user: null,
       email: 'john@doe.com',
       password: 'johndoe',
-      error: null,
-      response: null
+      user: null
     }
 
     this._postForm = this._postForm.bind(this)
@@ -42,20 +40,13 @@ export default class LoginForm extends Component {
 
     fetch(url, postData)
       .then(response => response.json())
-      .then(responseJson => this.setState({user: responseJson}))
+      .then(responseJson => this.props._getUser(responseJson))
       .catch(error => { console.error(error) })
   }
 
   render () {
-    let username = ''
-    if (this.state.user) {
-      username = this.state.user.username
-    }
-
     return (
-
       <View>
-        <Text>{username}</Text>
         <View>
           <FieldEmail
             _onChangeText={(email) => this.setState({email: email})}

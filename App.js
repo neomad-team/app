@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 
 import HeaderApp from './components/Header/HeaderApp'
 import CommunityButton from './components/Buttons/CommunityButton'
@@ -17,10 +17,12 @@ export default class App extends Component {
       lat: null,
       long: null,
       userLogged: false,
-      communityMode: false
+      communityMode: false,
+      user: null
     }
 
     this._authorized = this._authorized.bind(this)
+    this._getUser = this._getUser.bind(this)
   }
 
   _authorized () {
@@ -29,12 +31,19 @@ export default class App extends Component {
     })
   }
 
+  _getUser (user) {
+    this.setState({
+      username: user.username
+    })
+  }
+
   render () {
     return (
       <View style={styles.app}>
         <HeaderApp userLogged={this.state.userLogged} />
+        <Text>{this.state.username}</Text>
         <View>
-          <LoginForm />
+          <LoginForm _getUser={this._getUser} />
         </View>
         <View style={styles.body}>
           <CommunityButton
