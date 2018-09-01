@@ -18,7 +18,8 @@ export default class App extends Component {
       long: null,
       userLogged: false,
       communityMode: false,
-      user: null
+      userName: null,
+      userId: null
     }
 
     this._authorized = this._authorized.bind(this)
@@ -32,19 +33,30 @@ export default class App extends Component {
   }
 
   _getUser (user) {
+    console.warn(user)
     this.setState({
-      username: user.username
+      userLogged: true,
+      userName: user.username,
+      userId: user.id
     })
+  }
+
+  login () {
+    if (this.state.userLogged) {
+      return <Text style={styles.welcome}>{this.state.userName}</Text>
+    } else {
+      return <LoginForm _getUser={this._getUser} />
+    }
   }
 
   render () {
     return (
       <View style={styles.app}>
-        <HeaderApp userLogged={this.state.userLogged} />
-        <Text>{this.state.username}</Text>
-        <View>
-          <LoginForm _getUser={this._getUser} />
-        </View>
+        <HeaderApp
+          userLogged={this.state.userLogged}
+          userId={this.state.userId} />
+
+        <View>{this.login()}</View>
         <View style={styles.body}>
           <CommunityButton
             communityMode={this.state.communityMode}

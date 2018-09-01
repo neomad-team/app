@@ -7,6 +7,7 @@ import FieldPassword from './FieldPassword'
 import LoginButton from '../Buttons/LoginButton'
 
 import { style } from './LoginFormStyle'
+import { content } from '../../static/content'
 
 export default class LoginForm extends Component {
 
@@ -23,7 +24,7 @@ export default class LoginForm extends Component {
   }
 
   _postForm () {
-    const url = 'http://localhost:5000/api/login/'
+    const url = `${content.url}${content.loginPath}`
 
     const formData = new FormData()
     formData.append('email', this.state.email)
