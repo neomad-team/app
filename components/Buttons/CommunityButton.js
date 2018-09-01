@@ -9,7 +9,9 @@ export default class CommunityButton extends Component {
     return (
       <CheckBox
         center
-        title='CommunityButton active _watch function'
+        title={this.props.communityMode
+          ? 'Sharing location with community'
+          : 'Stealth mode – not socializing'}
         iconType='material'
         checkedIcon='location-searching'
         uncheckedIcon='location-disabled'
