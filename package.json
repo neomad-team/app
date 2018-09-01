@@ -9,10 +9,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "instruments": "0.0.1",
     "react": "16.4.1",
+    "react-devtools": "^3.3.2",
     "react-native": "0.56.0",
     "react-native-elements": "^0.19.1",
-    "react-native-vector-icons": "^5.0.0"
+    "react-native-vector-icons": "^5.0.0",
+    "react-navigation": "^2.12.1"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",

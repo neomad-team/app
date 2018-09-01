@@ -9,10 +9,10 @@ export default class LoginButton extends Component {
     return (
       <Button
         icon={style.icon}
-        title='User sign in'
+        title='Log in'
         buttonStyle={style.button}
         textStyle={style.text}
-        onPress={this.props._authorize}
+        onPress={ this.props.submit }
       />
     )
   }

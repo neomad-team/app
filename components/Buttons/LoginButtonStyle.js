@@ -3,9 +3,9 @@ import { color } from '../../styles/color'
 export const style = {
   button: {
     backgroundColor: color.main,
-    margin: 20,
-    padding: 10,
-    borderRadius: 100
+    marginTop: 20,
+    borderRadius: 50,
+    width: '100%'
   },
   icon: {
     color: color.white,

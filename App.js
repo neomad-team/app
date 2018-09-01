@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
+import { createStackNavigator } from 'react-navigation'
 
+import LoginScreen from './components/screens/LoginScreen'
 import HeaderApp from './components/Header/HeaderApp'
 import CommunityButton from './components/Buttons/CommunityButton'
 import LoginForm from './components/Login/LoginForm'
@@ -8,6 +10,19 @@ import LoginButton from './components/Buttons/LoginButton'
 import Watch from './components/Text/Watch'
 
 import styles from './styles/commons'
+
+const RootStack = createStackNavigator(
+  {
+    Login: LoginScreen,
+  },
+  { initialRouteName: 'Login' }
+)
+
+class User {
+  constructor (data) {
+    this.data = data
+  }
+}
 
 export default class App extends Component {
 
@@ -17,8 +32,9 @@ export default class App extends Component {
     this.state = {
       lat: null,
       long: null,
-      userLogged: false,
-      communityMode: false
+      communityMode: false,
+      user: null,
+      userLogged: this.user === null,
     }
 
     this._userLogged = this._userLogged.bind(this)
@@ -37,14 +53,16 @@ export default class App extends Component {
     })
   }
 
+  login (userData) {
+
+  }
+
   render () {
     return (
       <View style={styles.app}>
         <HeaderApp userLogged={this.state.userLogged} />
-        <View>
-          <LoginForm />
-          <LoginButton _authorize={this._userLogged} />
-        </View>
+        <LoginScreen actions={ this.actions } />
+
         <View style={styles.body}>
           <CommunityButton
             communityMode={this.state.communityMode}
