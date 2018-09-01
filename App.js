@@ -7,6 +7,7 @@ import LoginForm from './components/Login/LoginForm'
 import Watch from './components/Text/Watch'
 
 import styles from './styles/commons'
+import content from './static/content'
 
 export default class App extends Component {
 
@@ -42,9 +43,7 @@ export default class App extends Component {
   }
 
   login () {
-    if (this.state.userLogged) {
-      return <Text style={styles.welcome}>{this.state.userName}</Text>
-    } else {
+    if (!this.state.userLogged) {
       return <LoginForm _getUser={this._getUser} />
     }
   }
@@ -54,7 +53,8 @@ export default class App extends Component {
       <View style={styles.app}>
         <HeaderApp
           userLogged={this.state.userLogged}
-          userId={this.state.userId} />
+          userId={this.state.userId}
+          userName={this.state.userName} />
 
         <View>{this.login()}</View>
         <View style={styles.body}>
