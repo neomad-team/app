@@ -2,19 +2,27 @@ import React, { Component } from 'react'
 import { Avatar } from 'react-native-elements'
 
 import { style } from './AvatarAppStyle'
+import { content } from '../../static/content'
 
 export default class AvatarApp extends Component {
 
   render () {
+    const initial = this.props.userName
+      .split(' ')
+      .map(string => string[0])
+      .join('')
+
     const src = {
-      uri: 'https://neomad.org/static/uploads/avatars/5914dbdca193770016e289a7'
+      uri: `${content.url}${content.imgPath}${this.props.userId}`
     }
 
     return (
       <Avatar
         rounded
-        containerStyle={style}
+        containerStyle={style.container}
         source={src}
+        title={initial}
+        titleStyle={style.title}
       />
     )
   }

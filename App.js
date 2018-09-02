@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 
 import HeaderApp from './components/Header/HeaderApp'
 import CommunityButton from './components/Buttons/CommunityButton'
@@ -7,6 +7,7 @@ import LoginForm from './components/Login/LoginForm'
 import Watch from './components/Text/Watch'
 
 import styles from './styles/commons'
+import content from './static/content'
 
 export default class App extends Component {
 
@@ -17,10 +18,13 @@ export default class App extends Component {
       lat: null,
       long: null,
       userLogged: false,
-      communityMode: false
+      communityMode: false,
+      userName: null,
+      userId: null
     }
 
     this._authorized = this._authorized.bind(this)
+    this._getUser = this._getUser.bind(this)
   }
 
   _authorized () {
@@ -29,13 +33,30 @@ export default class App extends Component {
     })
   }
 
+  _getUser (user) {
+    console.warn(user)
+    this.setState({
+      userLogged: true,
+      userName: user.username,
+      userId: user.id
+    })
+  }
+
+  login () {
+    if (!this.state.userLogged) {
+      return <LoginForm _getUser={this._getUser} />
+    }
+  }
+
   render () {
     return (
       <View style={styles.app}>
-        <HeaderApp userLogged={this.state.userLogged} />
-        <View>
-          <LoginForm />
-        </View>
+        <HeaderApp
+          userLogged={this.state.userLogged}
+          userId={this.state.userId}
+          userName={this.state.userName} />
+
+        <View>{this.login()}</View>
         <View style={styles.body}>
           <CommunityButton
             communityMode={this.state.communityMode}
