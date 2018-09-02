@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
+import { createStackNavigator } from 'react-navigation'
 
+import LoginScreen from './components/screens/LoginScreen'
+import CommunityScreen from './components/screens/CommunityScreen'
 import HeaderApp from './components/Header/HeaderApp'
-import CommunityButton from './components/Buttons/CommunityButton'
 import LoginForm from './components/Login/LoginForm'
-import Watch from './components/Text/Watch'
 
 import styles from './styles/commons'
 import content from './static/content'
+
+const RootStack = createStackNavigator(
+  {
+    Login: LoginScreen,
+    Community: CommunityScreen,
+  },
+  { initialRouteName: 'Login' }
+)
 
 export default class App extends Component {
 
@@ -20,7 +29,8 @@ export default class App extends Component {
       userLogged: false,
       communityMode: false,
       userName: null,
-      userId: null
+      userId: null,
+      user: {}
     }
 
     this._authorized = this._authorized.bind(this)
@@ -42,12 +52,6 @@ export default class App extends Component {
     })
   }
 
-  login () {
-    if (!this.state.userLogged) {
-      return <LoginForm _getUser={this._getUser} />
-    }
-  }
-
   render () {
     return (
       <View style={styles.app}>
@@ -55,14 +59,7 @@ export default class App extends Component {
           userLogged={this.state.userLogged}
           userId={this.state.userId}
           userName={this.state.userName} />
-
-        <View>{this.login()}</View>
-        <View style={styles.body}>
-          <CommunityButton
-            communityMode={this.state.communityMode}
-            _authorized={this._authorized} />
-          <Watch />
-        </View>
+        <RootStack />
       </View>
     )
   }

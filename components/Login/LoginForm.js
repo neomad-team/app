@@ -21,6 +21,7 @@ export default class LoginForm extends Component {
     }
 
     this._postForm = this._postForm.bind(this)
+    this.login = this.login.bind(this)
   }
 
   _postForm () {
@@ -45,6 +46,10 @@ export default class LoginForm extends Component {
       .catch(error => { console.error(error) })
   }
 
+  login () {
+    this.props.navigation.navigate('Community')
+  }
+
   render () {
     return (
       <View>
@@ -58,7 +63,7 @@ export default class LoginForm extends Component {
         </View>
 
         <View style={style.button}>
-          <LoginButton _postForm={this._postForm} />
+          <LoginButton login={ this.login } />
         </View>
       </View>
     )
