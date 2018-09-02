@@ -1,21 +1,31 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
-import { createStackNavigator } from 'react-navigation'
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
 
-import LoginScreen from './components/screens/LoginScreen'
-import CommunityScreen from './components/screens/CommunityScreen'
+import AuthScreen from './components/screens/AuthScreen'
+import AppLoadingScreen from './components/screens/AppLoadingScreen'
+import AppScreen from './components/screens/AppScreen'
 import HeaderApp from './components/Header/HeaderApp'
-import LoginForm from './components/Login/LoginForm'
 
 import styles from './styles/commons'
 import content from './static/content'
 
-const RootStack = createStackNavigator(
+const AppStack = createStackNavigator(
   {
-    Login: LoginScreen,
-    Community: CommunityScreen,
+    AppLoading: AppLoadingScreen,
+    App: AppScreen,
   },
-  { initialRouteName: 'Login' }
+  { initialRouteName: 'AppLoading' }
+)
+
+// See https://reactnavigation.org/docs/en/auth-flow.html#implement-our-authentication-loading-screen
+const AuthStack = createStackNavigator(
+  { Auth: AuthScreen }
+)
+
+const RootStack = createSwitchNavigator(
+  { AuthStack, AppStack },
+  { initialRouteName: 'AppStack' }
 )
 
 export default class App extends Component {
@@ -30,25 +40,13 @@ export default class App extends Component {
       communityMode: false,
       userName: null,
       userId: null,
-      user: {}
+      user: 'user actuel'
     }
-
-    this._authorized = this._authorized.bind(this)
-    this._getUser = this._getUser.bind(this)
   }
 
   _authorized () {
     this.setState({
       communityMode: !this.state.communityMode
-    })
-  }
-
-  _getUser (user) {
-    console.warn(user)
-    this.setState({
-      userLogged: true,
-      userName: user.username,
-      userId: user.id
     })
   }
 
