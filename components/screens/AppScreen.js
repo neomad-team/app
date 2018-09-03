@@ -6,7 +6,6 @@ import Watch from '../Text/Watch'
 
 import styles from '../../styles/commons'
 
-
 export default class AppScreen extends React.Component {
   constructor () {
     super()

@@ -3,7 +3,6 @@ import { AsyncStorage, View } from 'react-native'
 import { Button, Text, FormValidationMessage } from 'react-native-elements'
 import FormData from 'FormData'
 
-
 import FieldEmail from '../fields/FieldEmail'
 import FieldPassword from '../fields/FieldPassword'
 
@@ -44,7 +43,7 @@ export default class AuthScreen extends React.Component {
     this.state = {
       email: '',
       password: '',
-      error: '',
+      error: ''
     }
   }
 
@@ -64,7 +63,7 @@ export default class AuthScreen extends React.Component {
     fetch(url, postData)
       .then(async (response) => {
         if (!response.ok) {
-          this.setState({ error: "Please check your email and password" })
+          this.setState({ error: 'Please check your email and password' })
           return
         }
         const data = await response.json()
@@ -79,7 +78,7 @@ export default class AuthScreen extends React.Component {
     return (
       <View>
         <View>
-          { this.state.error ? errorText : null }
+          {this.state.error ? errorText : null}
           <FieldEmail
             _onChangeText={(email) => this.setState({email: email})}
             value={this.state.email} />
@@ -94,7 +93,7 @@ export default class AuthScreen extends React.Component {
             title='Log in'
             buttonStyle={buttonStyle.button}
             textStyle={buttonStyle.text}
-            onPress={ () => this.login() }
+            onPress={() => this.login()}
           />
         </View>
       </View>
