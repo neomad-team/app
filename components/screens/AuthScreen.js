@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { AsyncStorage, View } from 'react-native'
-import { Button, Text, FormValidationMessage } from 'react-native-elements'
+import { Button, FormValidationMessage } from 'react-native-elements'
 import FormData from 'FormData'
 
 import FieldEmail from '../fields/FieldEmail'
@@ -36,7 +36,7 @@ const buttonStyle = {
   }
 }
 
-export default class AuthScreen extends React.Component {
+export default class AuthScreen extends Component {
   constructor () {
     super()
 
