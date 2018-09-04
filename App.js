@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { AsyncStorage, StyleSheet, View } from 'react-native'
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
 
 import AuthScreen from './components/screens/AuthScreen'
@@ -28,10 +28,28 @@ const RootStack = createSwitchNavigator(
 )
 
 export default class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      userId: ''
+    }
+
+    this._bootstrapAsync()
+  }
+
+  _bootstrapAsync = async () => {
+    this.setState({
+      userId: await AsyncStorage.getItem('userId')
+    })
+  }
+
   render () {
+    console.warn(this.state.userId);
+
     return (
       <View style={styles.app}>
-        <HeaderApp />
+        <HeaderApp userId={this.state.userId}/>
         <RootStack />
       </View>
     )

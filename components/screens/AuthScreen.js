@@ -67,10 +67,7 @@ export default class AuthScreen extends Component {
           return
         }
         const data = await response.json()
-        AsyncStorage.multiSet([
-          ['userId', data.id],
-          ['userName', data.username]
-        ])
+        AsyncStorage.setItem('userId', data.id)
         this.props.navigation.navigate('App')
       })
       .catch((error) => { console.error(error) })

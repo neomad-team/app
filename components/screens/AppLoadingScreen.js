@@ -14,7 +14,7 @@ export default class AppLoadingScreen extends Component {
   }
 
   logout () {
-    AsyncStorage.multiRemove(['userId', 'userName'])
+    AsyncStorage.removeItem('userId')
     this.props.navigation.navigate('Auth')
   }
 
