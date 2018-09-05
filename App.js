@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { AsyncStorage, StyleSheet, View } from 'react-native'
+import { AsyncStorage, View } from 'react-native'
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
 
 import AuthScreen from './components/screens/AuthScreen'
@@ -45,8 +45,6 @@ export default class App extends Component {
   }
 
   render () {
-    console.warn(this.state.userId);
-
     return (
       <View style={styles.app}>
         <HeaderApp userId={this.state.userId}/>
