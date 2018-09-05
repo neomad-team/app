@@ -46,9 +46,9 @@ export default class App extends Component {
 
   render () {
     return (
-      <View style={styles.app}>
-        <HeaderApp userId={this.state.userId}/>
-        <RootStack />
+      <View style={styles.app} >
+        <HeaderApp userId={this.state.userId} />
+        <RootStack screenProps={this.state.userId} />
       </View>
     )
   }
