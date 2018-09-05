@@ -3,6 +3,7 @@ import { AsyncStorage, View } from 'react-native'
 import { Button, FormValidationMessage } from 'react-native-elements'
 import FormData from 'FormData'
 
+import api from '../../api'
 import FieldEmail from '../fields/FieldEmail'
 import FieldPassword from '../fields/FieldPassword'
 
@@ -47,7 +48,7 @@ export default class AuthScreen extends Component {
     }
   }
 
-  login () {
+  async login () {
     const url = `${content.url}${content.loginPath}`
 
     const formData = new FormData()
@@ -55,22 +56,21 @@ export default class AuthScreen extends Component {
     formData.append('password', this.state.password)
 
     const postData = {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
       body: formData
     }
 
-    fetch(url, postData)
-      .then(async (response) => {
-        if (!response.ok) {
-          this.setState({ error: 'Please check your email and password' })
-          return
-        }
-        const data = await response.json()
-        AsyncStorage.setItem('userId', data.id)
-        this.props.navigation.navigate('App')
-      })
-      .catch((error) => { console.error(error) })
+    try {
+      const response = await api(url, postData)
+      if (!response.ok) {
+        this.setState({ error: 'Please check your email and password' })
+        return
+      }
+      AsyncStorage.setItem('userId', response.data.id)
+      this.props.navigation.navigate('App')
+    }
+    catch (e) {
+      console.error(e)
+    }
   }
 
   render () {
