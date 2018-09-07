@@ -1,4 +1,4 @@
-import { color } from '../../styles/color'
+import { color } from '../../static/color'
 import { content } from '../../static/content'
 
 export const style = {

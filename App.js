@@ -7,7 +7,7 @@ import AppLoadingScreen from './components/screens/AppLoadingScreen'
 import AppScreen from './components/screens/AppScreen'
 import HeaderApp from './components/Header/HeaderApp'
 
-import styles from './styles/commons'
+import styles from './static/styles'
 
 const AppStack = createStackNavigator(
   {
