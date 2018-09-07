@@ -1,8 +1,8 @@
-import React from 'react'
-import { ActivityIndicator, AsyncStorage, StatusBar, StyleSheet, View } from 'react-native'
+import React, { Component } from 'react'
+import { ActivityIndicator, AsyncStorage, StatusBar, View } from 'react-native'
 import { Button } from 'react-native-elements'
 
-export default class AppLoadingScreen extends React.Component {
+export default class AppLoadingScreen extends Component {
   constructor() {
     super()
     this._bootstrapAsync()
@@ -25,8 +25,8 @@ export default class AppLoadingScreen extends React.Component {
         <StatusBar barStyle="default" />
         <Button
           title='Log out'
-          onPress={ () => this.logout() }
-          />
+          onPress={() => this.logout()}
+        />
       </View>
     )
   }

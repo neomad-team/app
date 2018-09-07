@@ -7,7 +7,8 @@ import { content } from '../../static/content'
 export default class AvatarApp extends Component {
 
   render () {
-    const initial = this.props.userName
+    const simulateName = 'john doe'
+    const initials = simulateName
       .split(' ')
       .map(string => string[0])
       .join('')
@@ -21,7 +22,7 @@ export default class AvatarApp extends Component {
         rounded
         containerStyle={style.container}
         source={src}
-        title={initial}
+        title={initials}
         titleStyle={style.title}
       />
     )

@@ -8,16 +8,13 @@ import FieldEmail from '../fields/FieldEmail'
 import FieldPassword from '../fields/FieldPassword'
 
 import { content } from '../../static/content'
-import { color } from '../../styles/color'
-
-const formStyle = {
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-}
+import { color } from '../../static/color'
 
 const buttonStyle = {
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   button: {
     backgroundColor: color.main,
     margin: 20,
@@ -87,7 +84,7 @@ export default class AuthScreen extends Component {
             value={this.state.password} />
         </View>
 
-        <View style={formStyle.button}>
+        <View style={buttonStyle.container}>
           <Button
             icon={buttonStyle.icon}
             title='Log in'
