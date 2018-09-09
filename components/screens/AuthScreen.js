@@ -7,32 +7,8 @@ import api from '../../api'
 import FieldEmail from '../fields/FieldEmail'
 import FieldPassword from '../fields/FieldPassword'
 
+import { style } from './ScreensStyle'
 import { content } from '../../static/content'
-import { color } from '../../static/color'
-
-const buttonStyle = {
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  button: {
-    backgroundColor: color.main,
-    margin: 20,
-    padding: 10,
-    borderRadius: 100,
-    width: 210
-  },
-  icon: {
-    color: color.white,
-    name: 'person',
-    size: 30
-  },
-  text: {
-    color: color.white,
-    fontSize: 20,
-    fontWeight: 'bold'
-  }
-}
 
 export default class AuthScreen extends Component {
   constructor () {
@@ -84,12 +60,12 @@ export default class AuthScreen extends Component {
             value={this.state.password} />
         </View>
 
-        <View style={buttonStyle.container}>
+        <View style={style.container}>
           <Button
-            icon={buttonStyle.icon}
+            icon={style.icon}
             title='Log in'
-            buttonStyle={buttonStyle.button}
-            textStyle={buttonStyle.text}
+            buttonStyle={style.button}
+            textStyle={style.text}
             onPress={() => this.login()}
           />
         </View>
