@@ -8,12 +8,10 @@ import AppScreen from './components/screens/AppScreen'
 import HeaderApp from './components/Header/HeaderApp'
 
 import styles from './static/styles'
+import { AppProvider } from './static/context'
 
 const AppStack = createStackNavigator(
-  {
-    AppLoading: AppLoadingScreen,
-    App: AppScreen
-  },
+  { AppLoading: AppLoadingScreen, App: AppScreen },
   { initialRouteName: 'AppLoading' }
 )
 
@@ -46,10 +44,12 @@ export default class App extends Component {
 
   render () {
     return (
-      <View style={styles.app} >
-        <HeaderApp userId={this.state.userId} />
-        <RootStack screenProps={this.state.userId} />
-      </View>
+      <AppProvider>
+        <View style={styles.app} >
+          <HeaderApp userId={this.state.userId} />
+          <RootStack screenProps={this.state.userId} />
+        </View>
+      </AppProvider>
     )
   }
 }

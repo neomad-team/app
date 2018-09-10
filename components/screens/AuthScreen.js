@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { AsyncStorage, View } from 'react-native'
+import { AsyncStorage, Text, View } from 'react-native'
 import { Button, FormValidationMessage } from 'react-native-elements'
 import FormData from 'FormData'
 
-import api from '../../api'
 import FieldEmail from '../fields/FieldEmail'
 import FieldPassword from '../fields/FieldPassword'
 
+import api from '../../static/api'
+import { AppConsumer } from '../../static/context'
 import { style } from './ScreensStyle'
 import { content } from '../../static/content'
 
@@ -68,6 +69,14 @@ export default class AuthScreen extends Component {
             textStyle={style.text}
             onPress={() => this.login()}
           />
+        </View>
+
+        <View style={style.container}>
+          <AppConsumer>
+            { (context) => {
+              return <Text>{context.userId}</Text>
+            }}
+          </AppConsumer>
         </View>
       </View>
     )
