@@ -11,7 +11,7 @@ export default class FieldPassword extends Component {
       <View>
         <FormLabel>Password</FormLabel>
         <FormInput
-          secureTextEntry={true}
+          secureTextEntry
           onChangeText={this.props._onChangeText} />
         <FormValidationMessage>{content.error.password}</FormValidationMessage>
       </View>

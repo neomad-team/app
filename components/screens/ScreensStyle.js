@@ -1,6 +1,10 @@
-import { color } from '../../styles/color'
+import { color } from '../../static/color'
 
 export const style = {
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   button: {
     backgroundColor: color.main,
     margin: 20,

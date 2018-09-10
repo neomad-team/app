@@ -9,8 +9,8 @@ export default class HeaderApp extends Component {
 
   render () {
     let avatar = null
-    if (this.props.userLogged) {
-      avatar = <AvatarApp />
+    if (this.props.userId) {
+      avatar = <AvatarApp userId={this.props.userId} />
     }
 
     return (

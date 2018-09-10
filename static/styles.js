@@ -10,5 +10,11 @@ export default StyleSheet.create({
   body: {
     flex: 1,
     marginTop: 40
+  },
+  centerText: {
+    alignSelf: 'stretch',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 10
   }
 })

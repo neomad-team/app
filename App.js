@@ -1,47 +1,54 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { AsyncStorage, View } from 'react-native'
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
 
+import AuthScreen from './components/screens/AuthScreen'
+import AppLoadingScreen from './components/screens/AppLoadingScreen'
+import AppScreen from './components/screens/AppScreen'
 import HeaderApp from './components/Header/HeaderApp'
-import CommunityButton from './components/Buttons/CommunityButton'
-import LoginForm from './components/Login/LoginForm'
-import Watch from './components/Text/Watch'
 
-import styles from './styles/commons'
+import styles from './static/styles'
+
+const AppStack = createStackNavigator(
+  {
+    AppLoading: AppLoadingScreen,
+    App: AppScreen
+  },
+  { initialRouteName: 'AppLoading' }
+)
+
+// See https://reactnavigation.org/docs/en/auth-flow.html#implement-our-authentication-loading-screen
+const AuthStack = createStackNavigator(
+  { Auth: AuthScreen }
+)
+
+const RootStack = createSwitchNavigator(
+  { AuthStack, AppStack },
+  { initialRouteName: 'AppStack' }
+)
 
 export default class App extends Component {
 
-  constructor () {
+  constructor() {
     super()
-
     this.state = {
-      lat: null,
-      long: null,
-      userLogged: false,
-      communityMode: false
+      userId: ''
     }
 
-    this._authorized = this._authorized.bind(this)
+    this._bootstrapAsync()
   }
 
-  _authorized () {
+  _bootstrapAsync = async () => {
     this.setState({
-      communityMode: !this.state.communityMode
+      userId: await AsyncStorage.getItem('userId')
     })
   }
 
   render () {
     return (
-      <View style={styles.app}>
-        <HeaderApp userLogged={this.state.userLogged} />
-        <View>
-          <LoginForm />
-        </View>
-        <View style={styles.body}>
-          <CommunityButton
-            communityMode={this.state.communityMode}
-            _authorized={this._authorized} />
-          <Watch />
-        </View>
+      <View style={styles.app} >
+        <HeaderApp userId={this.state.userId} />
+        <RootStack screenProps={this.state.userId} />
       </View>
     )
   }
