@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
-import { AsyncStorage, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { Button, FormValidationMessage } from 'react-native-elements'
-import FormData from 'FormData'
 
 import FieldEmail from '../fields/FieldEmail'
 import FieldPassword from '../fields/FieldPassword'
 
-import api from '../../static/api'
 import { AppConsumer } from '../../static/context'
 import { style } from './ScreensStyle'
-import { content } from '../../static/content'
 
 export default class AuthScreen extends Component {
   constructor () {
@@ -19,31 +16,6 @@ export default class AuthScreen extends Component {
       email: '',
       password: '',
       error: ''
-    }
-  }
-
-  async login () {
-    const url = `${content.url}${content.loginPath}`
-
-    const formData = new FormData()
-    formData.append('email', this.state.email)
-    formData.append('password', this.state.password)
-
-    const postData = {
-      body: formData
-    }
-
-    try {
-      const response = await api(url, postData)
-      if (!response.ok) {
-        this.setState({ error: 'Please check your email and password' })
-        return
-      }
-      AsyncStorage.setItem('userId', response.data.id)
-      this.props.navigation.navigate('App')
-    }
-    catch (e) {
-      console.error(e)
     }
   }
 
@@ -62,19 +34,21 @@ export default class AuthScreen extends Component {
         </View>
 
         <View style={style.container}>
-          <Button
-            icon={style.icon}
-            title='Log in'
-            buttonStyle={style.button}
-            textStyle={style.text}
-            onPress={() => this.login()}
-          />
-        </View>
-
-        <View style={style.container}>
           <AppConsumer>
             { (context) => {
-              return <Text>{context.userId}</Text>
+              return <View>
+                <Button
+                  icon={style.icon}
+                  title='Log in'
+                  buttonStyle={style.button}
+                  textStyle={style.text}
+                  onPress={() => context.login(
+                    this.state.email,
+                    this.state.password
+                  )}
+                />
+                <Text>{context.userId}</Text>
+              </View>
             }}
           </AppConsumer>
         </View>
