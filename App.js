@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { AsyncStorage, View } from 'react-native'
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
-import { AppProvider } from './context'
+import { AppProvider, AppConsumer } from './context'
 
 import AuthScreen from './components/screens/AuthScreen'
 import AppLoadingScreen from './components/screens/AppLoadingScreen'
@@ -46,7 +46,12 @@ export default class App extends Component {
     return (
       <AppProvider>
         <View style={styles.app} >
-          <HeaderApp userId={this.state.userId} />
+          <AppConsumer>
+            { (context) => {
+              return <HeaderApp userId={context.userId} />
+            }}
+          </AppConsumer>
+
           <RootStack screenProps={this.state.userId} />
         </View>
       </AppProvider>

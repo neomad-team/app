@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { AppConsumer } from '../../context'
 
 import CommunityButton from '../Buttons/CommunityButton'
 import Watch from '../Text/Watch'
@@ -22,7 +23,12 @@ export default class AppScreen extends React.Component {
   render () {
     return (
       <View style={styles.body}>
-        <Text>Hello user {this.props.screenProps}</Text>
+        <AppConsumer>
+          { (context) => {
+            return <Text>the context userId is: {context.userId}</Text>
+          }}
+        </AppConsumer>
+
         <CommunityButton
           communityMode={this.state.communityMode}
           _authorized={this._authorized} />

@@ -22,7 +22,7 @@ export default class AuthScreen extends Component {
     }
   }
 
-  async login () {
+  async login (updateValue) {
     const url = `${content.url}${content.loginPath}`
     const formData = new FormData()
     formData.append('email', this.state.email)
@@ -37,6 +37,7 @@ export default class AuthScreen extends Component {
         return
       }
       AsyncStorage.setItem('userId', response.data.id)
+      updateValue('userId', response.data.id)
       this.props.navigation.navigate('App')
     } catch (e) {
       console.error(e)
@@ -66,9 +67,8 @@ export default class AuthScreen extends Component {
                   title='Log in'
                   buttonStyle={style.button}
                   textStyle={style.text}
-                  onPress={() => this.login()}
+                  onPress={() => this.login(context.updateValue)}
                 />
-                <Text>the context userId is: {context.userId}</Text>
               </View>
             }}
           </AppConsumer>
