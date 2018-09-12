@@ -1,5 +1,5 @@
 import React from 'react'
-import { AsyncStorage, Text, View } from 'react-native'
+import { AsyncStorage, View } from 'react-native'
 import { AppConsumer } from '../../context'
 
 import CommunityButton from '../Buttons/CommunityButton'
@@ -39,8 +39,6 @@ export default class AppScreen extends React.Component {
         { (context) => {
           return (
             <View style={styles.body}>
-              <Text>the context userId is: {context.userId}</Text>
-
               <CommunityButton
                 communityMode={context.communityMode}
                 _authorized={() => {
