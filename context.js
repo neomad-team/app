@@ -15,7 +15,7 @@ export class AppProvider extends Component {
     this._bootstrapAsync()
   }
 
-  updateValue = (key, val) => {
+  setGlobalState = (key, val) => {
     this.setState({ [key]: val })
   }
 
@@ -31,7 +31,7 @@ export class AppProvider extends Component {
         value={{
           userId: this.state.userId,
           communityMode: this.state.communityMode,
-          updateValue: this.updateValue
+          setGlobalState: this.setGlobalState
         }}>
         {this.props.children}
       </AppContext.Provider>

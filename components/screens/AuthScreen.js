@@ -22,7 +22,7 @@ export default class AuthScreen extends Component {
     }
   }
 
-  async login (updateValue) {
+  async login (setGlobalState) {
     const url = `${content.url}${content.loginPath}`
     const formData = new FormData()
     formData.append('email', this.state.email)
@@ -37,7 +37,7 @@ export default class AuthScreen extends Component {
         return
       }
       AsyncStorage.setItem('userId', response.data.id)
-      updateValue('userId', response.data.id)
+      setGlobalState('userId', response.data.id)
       this.props.navigation.navigate('App')
     } catch (error) {
       console.error(error)
@@ -66,7 +66,7 @@ export default class AuthScreen extends Component {
                 title='Log in'
                 buttonStyle={style.button}
                 textStyle={style.text}
-                onPress={() => this.login(context.updateValue)}
+                onPress={() => this.login(context.setGlobalState)}
               />
             }}
           </AppConsumer>
