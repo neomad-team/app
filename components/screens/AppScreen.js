@@ -22,8 +22,8 @@ export default class AppScreen extends React.Component {
     this.props.navigation.navigate(userId ? 'App' : 'Auth')
   }
 
-  _authorized () {
-    return false
+  _authorized (updateValue, communityMode) {
+    updateValue('communityMode', !communityMode)
   }
 
   render () {
@@ -35,10 +35,23 @@ export default class AppScreen extends React.Component {
           }}
         </AppConsumer>
 
-        <CommunityButton
-          communityMode={this.state.communityMode}
-          _authorized={this._authorized} />
-        <Watch />
+        <AppConsumer>
+          { (context) => {
+            return <CommunityButton
+              communityMode={context.communityMode}
+              _authorized={() => {
+                this._authorized(context.updateValue, context.communityMode)
+              }} />
+          }}
+        </AppConsumer>
+
+        <AppConsumer>
+          { (context) => {
+            if (context.communityMode) {
+              return <Watch />
+            }
+          }}
+        </AppConsumer>
       </View>
     )
   }

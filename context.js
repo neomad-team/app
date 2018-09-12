@@ -8,7 +8,10 @@ export class AppProvider extends Component {
   constructor () {
     super()
 
-    this.state = { userId: 'none' }
+    this.state = {
+      userId: 'none',
+      communityMode: false
+    }
     this._bootstrapAsync()
   }
 
@@ -27,6 +30,7 @@ export class AppProvider extends Component {
       <AppContext.Provider
         value={{
           userId: this.state.userId,
+          communityMode: this.state.communityMode,
           updateValue: this.updateValue
         }}>
         {this.props.children}

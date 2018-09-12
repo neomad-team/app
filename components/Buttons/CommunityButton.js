@@ -9,7 +9,7 @@ export default class CommunityButton extends Component {
     return (
       <CheckBox
         center
-        title='CommunityButton active _watch function'
+        title='CommunityButton toggle _watch function'
         iconType='material'
         checkedIcon='location-searching'
         uncheckedIcon='location-disabled'
