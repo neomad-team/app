@@ -26,33 +26,32 @@ export default class AppScreen extends React.Component {
     updateValue('communityMode', !communityMode)
   }
 
+  watch (context) {
+    if (context.communityMode) {
+      return <Watch />
+    }
+  }
+
+
   render () {
     return (
-      <View style={styles.body}>
-        <AppConsumer>
-          { (context) => {
-            return <Text>the context userId is: {context.userId}</Text>
-          }}
-        </AppConsumer>
+      <AppConsumer>
+        { (context) => {
+          return (
+            <View style={styles.body}>
+              <Text>the context userId is: {context.userId}</Text>
 
-        <AppConsumer>
-          { (context) => {
-            return <CommunityButton
-              communityMode={context.communityMode}
-              _authorized={() => {
-                this._authorized(context.updateValue, context.communityMode)
-              }} />
-          }}
-        </AppConsumer>
+              <CommunityButton
+                communityMode={context.communityMode}
+                _authorized={() => {
+                  this._authorized(context.updateValue, context.communityMode)
+                }} />
 
-        <AppConsumer>
-          { (context) => {
-            if (context.communityMode) {
-              return <Watch />
-            }
-          }}
-        </AppConsumer>
-      </View>
+              {this.watch(context)}
+            </View>
+          )
+        }}
+      </AppConsumer>
     )
   }
 }
