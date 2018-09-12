@@ -19,7 +19,7 @@ export default class AppLoadingScreen extends Component {
 
   logout (updateValue) {
     AsyncStorage.removeItem('userId')
-    updateValue('userId', 'none')
+    updateValue('userId', null)
     this.props.navigation.navigate('Auth')
   }
 

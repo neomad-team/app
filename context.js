@@ -9,7 +9,7 @@ export class AppProvider extends Component {
     super()
 
     this.state = {
-      userId: 'none',
+      userId: null,
       communityMode: false
     }
     this._bootstrapAsync()
