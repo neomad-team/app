@@ -17,9 +17,9 @@ export default class AppLoadingScreen extends Component {
     this.props.navigation.navigate(userId ? 'App' : 'Auth')
   }
 
-  logout (updateValue) {
+  logout (setGlobalState) {
     AsyncStorage.removeItem('userId')
-    updateValue('userId', null)
+    setGlobalState('userId', null)
     this.props.navigation.navigate('Auth')
   }
 
@@ -34,7 +34,7 @@ export default class AppLoadingScreen extends Component {
               title='Log out'
               buttonStyle={style.button}
               textStyle={style.text}
-              onPress={() => this.logout(context.updateValue)}
+              onPress={() => this.logout(context.setGlobalState)}
             />
           }}
         </AppConsumer>

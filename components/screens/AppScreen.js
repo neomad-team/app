@@ -23,8 +23,8 @@ export default class AppScreen extends React.Component {
     this.props.navigation.navigate(userId ? 'App' : 'Auth')
   }
 
-  _authorized (updateValue, communityMode) {
-    updateValue('communityMode', !communityMode)
+  _authorized (setGlobalState, communityMode) {
+    setGlobalState('communityMode', !communityMode)
   }
 
   watch (context) {
@@ -44,7 +44,7 @@ export default class AppScreen extends React.Component {
               <CommunityButton
                 communityMode={context.communityMode}
                 _authorized={() => {
-                  this._authorized(context.updateValue, context.communityMode)
+                  this._authorized(context.setGlobalState, context.communityMode)
                 }} />
 
               {this.watch(context)}
