@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { AsyncStorage, Text, View } from 'react-native'
 import { AppConsumer } from '../../context'
 
 import CommunityButton from '../Buttons/CommunityButton'
@@ -14,6 +14,12 @@ export default class AppScreen extends React.Component {
     this.state = {
       communityMode: false
     }
+    this._bootstrapAsync()
+  }
+
+  async _bootstrapAsync () {
+    const userId = await AsyncStorage.getItem('userId')
+    this.props.navigation.navigate(userId ? 'App' : 'Auth')
   }
 
   _authorized () {

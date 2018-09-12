@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { AsyncStorage, View } from 'react-native'
+import { View } from 'react-native'
 import { createSwitchNavigator, createStackNavigator } from 'react-navigation'
 import { AppProvider, AppConsumer } from './context'
 
@@ -15,7 +15,6 @@ const AppStack = createStackNavigator(
   { initialRouteName: 'AppLoading' }
 )
 
-// See https://reactnavigation.org/docs/en/auth-flow.html#implement-our-authentication-loading-screen
 const AuthStack = createStackNavigator(
   { Auth: AuthScreen }
 )
@@ -26,22 +25,6 @@ const RootStack = createSwitchNavigator(
 )
 
 export default class App extends Component {
-
-  constructor() {
-    super()
-    this.state = {
-      userId: ''
-    }
-
-    this._bootstrapAsync()
-  }
-
-  _bootstrapAsync = async () => {
-    this.setState({
-      userId: await AsyncStorage.getItem('userId')
-    })
-  }
-
   render () {
     return (
       <AppProvider>
@@ -52,7 +35,7 @@ export default class App extends Component {
             }}
           </AppConsumer>
 
-          <RootStack screenProps={this.state.userId} />
+          <RootStack />
         </View>
       </AppProvider>
     )

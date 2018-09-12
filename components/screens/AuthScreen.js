@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { AsyncStorage, Text, View } from 'react-native'
+import { AsyncStorage, View } from 'react-native'
 import { Button, FormValidationMessage } from 'react-native-elements'
 import { AppConsumer } from '../../context'
 import FormData from 'FormData'
@@ -39,8 +39,8 @@ export default class AuthScreen extends Component {
       AsyncStorage.setItem('userId', response.data.id)
       updateValue('userId', response.data.id)
       this.props.navigation.navigate('App')
-    } catch (e) {
-      console.error(e)
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -61,15 +61,13 @@ export default class AuthScreen extends Component {
         <View style={style.container}>
           <AppConsumer>
             { (context) => {
-              return <View>
-                <Button
-                  icon={style.icon}
-                  title='Log in'
-                  buttonStyle={style.button}
-                  textStyle={style.text}
-                  onPress={() => this.login(context.updateValue)}
-                />
-              </View>
+              return <Button
+                icon={style.icon}
+                title='Log in'
+                buttonStyle={style.button}
+                textStyle={style.text}
+                onPress={() => this.login(context.updateValue)}
+              />
             }}
           </AppConsumer>
         </View>

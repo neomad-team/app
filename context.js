@@ -5,13 +5,21 @@ export const AppContext = React.createContext()
 export const AppConsumer = AppContext.Consumer
 
 export class AppProvider extends Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
+
     this.state = { userId: 'none' }
+    this._bootstrapAsync()
   }
 
   updateValue = (key, val) => {
     this.setState({ [key]: val })
+  }
+
+  async _bootstrapAsync () {
+    this.setState({
+      userId: await AsyncStorage.getItem('userId')
+    })
   }
 
   render () {
