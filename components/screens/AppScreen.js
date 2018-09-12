@@ -14,6 +14,7 @@ export default class AppScreen extends React.Component {
     this.state = {
       communityMode: false
     }
+
     this._bootstrapAsync()
   }
 
@@ -31,7 +32,6 @@ export default class AppScreen extends React.Component {
       return <Watch />
     }
   }
-
 
   render () {
     return (
