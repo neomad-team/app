@@ -6,9 +6,9 @@ import { style } from './CommunityButtonStyle'
 export default class CommunityButton extends Component {
 
   render () {
-		const title = this.props.communityMode
-			? 'Sharing location with community'
-			: 'Stealth mode – not socializing'
+    const title = this.props.communityMode
+      ? 'Sharing location with community'
+      : 'Stealth mode – not socializing'
 
     return (
       <CheckBox
