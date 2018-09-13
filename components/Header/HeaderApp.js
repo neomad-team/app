@@ -8,10 +8,9 @@ import { style } from './HeaderAppStyle'
 export default class HeaderApp extends Component {
 
   render () {
-    let avatar = null
-    if (this.props.userId) {
-      avatar = <AvatarApp userId={this.props.userId} />
-    }
+    const avatar = this.props.userId !== null
+      ? <AvatarApp userId={this.props.userId} />
+      : null
 
     return (
       <Header

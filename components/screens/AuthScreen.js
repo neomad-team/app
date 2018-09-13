@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { AsyncStorage, View } from 'react-native'
 import { Button, FormValidationMessage } from 'react-native-elements'
+import { AppConsumer } from '../../context'
 import FormData from 'FormData'
 
-import api from '../../api'
 import FieldEmail from '../fields/FieldEmail'
 import FieldPassword from '../fields/FieldPassword'
 
-import { style } from './ScreensStyle'
+import api from '../../static/api'
 import { content } from '../../static/content'
+import { style } from './ScreensStyle'
 
 export default class AuthScreen extends Component {
   constructor () {
@@ -21,17 +22,14 @@ export default class AuthScreen extends Component {
     }
   }
 
-  async login () {
+  async login (setGlobalState) {
     const url = `${content.url}${content.loginPath}`
-
     const formData = new FormData()
     formData.append('email', this.state.email)
     formData.append('password', this.state.password)
-
     const postData = {
       body: formData
     }
-
     try {
       const response = await api(url, postData)
       if (!response.ok) {
@@ -39,10 +37,10 @@ export default class AuthScreen extends Component {
         return
       }
       AsyncStorage.setItem('userId', response.data.id)
+      setGlobalState('userId', response.data.id)
       this.props.navigation.navigate('App')
-    }
-    catch (e) {
-      console.error(e)
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -61,13 +59,17 @@ export default class AuthScreen extends Component {
         </View>
 
         <View style={style.container}>
-          <Button
-            icon={style.icon}
-            title='Log in'
-            buttonStyle={style.button}
-            textStyle={style.text}
-            onPress={() => this.login()}
-          />
+          <AppConsumer>
+            { (context) => {
+              return <Button
+                icon={style.icon}
+                title='Log in'
+                buttonStyle={style.button}
+                textStyle={style.text}
+                onPress={() => this.login(context.setGlobalState)}
+              />
+            }}
+          </AppConsumer>
         </View>
       </View>
     )

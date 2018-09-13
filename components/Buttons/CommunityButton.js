@@ -6,10 +6,14 @@ import { style } from './CommunityButtonStyle'
 export default class CommunityButton extends Component {
 
   render () {
+    const title = this.props.communityMode
+      ? 'Sharing location with community'
+      : 'Stealth mode – not socializing'
+
     return (
       <CheckBox
         center
-        title='CommunityButton active _watch function'
+        title={title}
         iconType='material'
         checkedIcon='location-searching'
         uncheckedIcon='location-disabled'

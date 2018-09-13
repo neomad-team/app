@@ -1,5 +1,6 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { AsyncStorage, View } from 'react-native'
+import { AppConsumer } from '../../context'
 
 import CommunityButton from '../Buttons/CommunityButton'
 import Watch from '../Text/Watch'
@@ -13,21 +14,42 @@ export default class AppScreen extends React.Component {
     this.state = {
       communityMode: false
     }
+
+    this._bootstrapAsync()
   }
 
-  _authorized () {
-    return false
+  async _bootstrapAsync () {
+    const userId = await AsyncStorage.getItem('userId')
+    this.props.navigation.navigate(userId ? 'App' : 'Auth')
+  }
+
+  _authorized (setGlobalState, communityMode) {
+    setGlobalState('communityMode', !communityMode)
+  }
+
+  watch (context) {
+    if (context.communityMode) {
+      return <Watch />
+    }
   }
 
   render () {
     return (
-      <View style={styles.body}>
-        <Text>Hello user {this.props.screenProps}</Text>
-        <CommunityButton
-          communityMode={this.state.communityMode}
-          _authorized={this._authorized} />
-        <Watch />
-      </View>
+      <AppConsumer>
+        { (context) => {
+          return (
+            <View style={styles.body}>
+              <CommunityButton
+                communityMode={context.communityMode}
+                _authorized={() => {
+                  this._authorized(context.setGlobalState, context.communityMode)
+                }} />
+
+              {this.watch(context)}
+            </View>
+          )
+        }}
+      </AppConsumer>
     )
   }
 }
