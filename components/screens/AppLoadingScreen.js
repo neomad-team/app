@@ -19,7 +19,7 @@ export default class AppLoadingScreen extends Component {
 
   logout (setGlobalState) {
     AsyncStorage.removeItem('userId')
-    setGlobalState('userId', null)
+    setGlobalState({userId: null})
     this.props.navigation.navigate('Auth')
   }
 

@@ -24,7 +24,7 @@ export default class AppScreen extends React.Component {
   }
 
   _authorized (setGlobalState, communityMode) {
-    setGlobalState('communityMode', !communityMode)
+    setGlobalState({communityMode: !communityMode})
   }
 
   watch (context) {

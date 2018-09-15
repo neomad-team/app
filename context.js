@@ -15,8 +15,8 @@ export class AppProvider extends Component {
     this._bootstrapAsync()
   }
 
-  setGlobalState = (key, val) => {
-    this.setState({ [key]: val })
+  setGlobalState = (obj) => {
+    this.setState(obj)
   }
 
   async _bootstrapAsync () {
