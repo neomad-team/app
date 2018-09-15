@@ -37,7 +37,7 @@ export default class AuthScreen extends Component {
         return
       }
       AsyncStorage.setItem('userId', response.data.id)
-      setGlobalState('userId', response.data.id)
+      setGlobalState({userId: response.data.id})
       this.props.navigation.navigate('App')
     } catch (error) {
       console.error(error)
