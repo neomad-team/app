@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
+import FormData from 'FormData'
+
+import api from '../../static/api'
+import { content } from '../../static/content'
 
 const options = {
   enableHighAccuracy: true,
@@ -13,8 +17,6 @@ export default class GeolocationExample extends Component {
     super(props)
 
     this.state = {
-      latitude: null,
-      longitude: null,
       error: null
     }
   }
@@ -22,26 +24,38 @@ export default class GeolocationExample extends Component {
   componentDidMount () {
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null
-        })
+        this.setPosition(position.coords.latitude, position.coords.longitude)
       },
-      (error) => this.setState({ error: error.message }),
+      error => this.setState({ error: error.message }),
       options
     )
   }
 
   componentWillUnmount () {
-    navigator.geolocation.clearWatch(this.watchId)
+    navigator.geolocation.stopObserving()
+  }
+
+  async setPosition (latitude, longitude) {
+    const url = `${content.url}${content.positionPath}${this.props.userId}`
+    const formData = new FormData()
+    formData.append('position', [latitude, longitude])
+    const data = {
+      body: formData
+    }
+    try {
+      const response = await api(url, data)
+      if (!response.ok) {
+        this.setState({ error: 'Error on response' })
+        return
+      }
+    } catch (error) {
+      this.setState({ error: error })
+    }
   }
 
   render () {
     return (
       <View style={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Latitude: {this.state.latitude}</Text>
-        <Text>Longitude: {this.state.longitude}</Text>
         {this.state.error && <Text>Error: {this.state.error}</Text>}
       </View>
     )

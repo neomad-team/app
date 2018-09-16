@@ -5,7 +5,7 @@ export default function api (url, data) {
 
   return fetch(url, options)
     .then(async (response) => {
-      if (response.ok) response.data = await response.json()
+      if (response.ok) response.data = await response
       return response
     })
     .catch((error) => { console.error(error) })

@@ -40,7 +40,7 @@ export default class AppScreen extends React.Component {
 
   watch (context) {
     if (context.communityMode) {
-      return <Watch />
+      return <Watch userId={context.userId} />
     }
   }
 
