@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import FormData from 'FormData'
 
 import api from '../../static/api'
 import { content } from '../../static/content'
@@ -24,7 +23,7 @@ export default class GeolocationExample extends Component {
   componentDidMount () {
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
-        this.setPosition(position.coords.latitude, position.coords.longitude)
+        this.setPosition(position.coords.latitude, position.coords.longitude, this.props.userId)
       },
       error => this.setState({ error: error.message }),
       options
@@ -35,15 +34,13 @@ export default class GeolocationExample extends Component {
     navigator.geolocation.stopObserving()
   }
 
-  async setPosition (latitude, longitude) {
-    const url = `${content.url}${content.positionPath}${this.props.userId}`
-    const formData = new FormData()
-    formData.append('position', [latitude, longitude])
+  async setPosition (latitude, longitude, userId) {
+    const url = `${content.url}${content.positionPath}`
     const data = {
-      body: formData
+      body: JSON.stringify([latitude, longitude])
     }
     try {
-      const response = await api(url, data)
+      const response = await api(url, data, userId)
       if (!response.ok) {
         this.setState({ error: 'Error on response' })
         return
