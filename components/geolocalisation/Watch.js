@@ -49,7 +49,7 @@ export default class Geolocation extends Component {
   }
 
   coordinatesToAddress (lat, lng) {
-    const url = `${content.osmUrl}reverse?format=json&lat=${lat}&lon=${lng}`
+    const url = `${content.osmUrl}/reverse?format=json&lat=${lat}&lon=${lng}`
     fetch(url, { mode: 'cors' })
       .then(async(response) => response.json())
       .then(data => {

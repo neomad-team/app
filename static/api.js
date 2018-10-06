@@ -7,7 +7,7 @@ export default function api (url, body, auth) {
   }
   if (auth) defaults.headers.Authentication = auth
 
-  body ? defaults.method = 'POST' : 'GET'
+  defaults.method = body ? 'POST' : 'GET'
   const options = Object.assign(defaults, body)
 
   return fetch(url, options)
