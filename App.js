@@ -12,16 +12,17 @@ import styles from './static/styles'
 
 const AppStack = createStackNavigator(
   { AppLoading: AppLoadingScreen, App: AppScreen },
-  { initialRouteName: 'AppLoading' }
+  { initialRouteName: 'AppLoading', headerMode: 'none' }
 )
 
 const AuthStack = createStackNavigator(
-  { Auth: AuthScreen }
+  { Auth: AuthScreen },
+  { headerMode: 'none' }
 )
 
 const RootStack = createSwitchNavigator(
   { AuthStack, AppStack },
-  { initialRouteName: 'AppStack' }
+  { initialRouteName: 'AppStack', headerMode: 'none' }
 )
 
 export default class App extends Component {
