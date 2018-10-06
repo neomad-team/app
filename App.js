@@ -6,7 +6,7 @@ import { AppProvider, AppConsumer } from './context'
 import AuthScreen from './components/screens/AuthScreen'
 import AppLoadingScreen from './components/screens/AppLoadingScreen'
 import AppScreen from './components/screens/AppScreen'
-import HeaderApp from './components/Header/HeaderApp'
+import HeaderApp from './components/header/HeaderApp'
 
 import styles from './static/styles'
 
@@ -30,7 +30,7 @@ export default class App extends Component {
       <AppProvider>
         <View style={styles.app} >
           <AppConsumer>
-            { (context) => {
+            { context => {
               return <HeaderApp userId={context.userId} />
             }}
           </AppConsumer>

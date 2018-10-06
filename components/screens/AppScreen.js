@@ -3,8 +3,8 @@ import { AsyncStorage, View } from 'react-native'
 import { Button } from 'react-native-elements'
 import { AppConsumer } from '../../context'
 
-import CommunityButton from '../Buttons/CommunityButton'
-import Watch from '../Text/Watch'
+import CommunityButton from '../buttons/CommunityButton'
+import Watch from '../geolocalisation/Watch'
 
 import styles from '../../static/styles'
 import { style } from './ScreensStyle'
@@ -53,7 +53,7 @@ export default class AppScreen extends React.Component {
   render () {
     return (
       <AppConsumer>
-        { (context) => {
+        { context => {
           return (
             <View style={styles.body}>
               <CommunityButton
