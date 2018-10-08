@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { ActivityIndicator, AsyncStorage, StatusBar, View } from 'react-native'
 
-
 export default class AppLoadingScreen extends Component {
   constructor () {
     super()

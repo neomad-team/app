@@ -4,8 +4,5 @@ export const style = {
     fontWeight: 'bold',
     marginLeft: -10,
     marginTop: 2000
-  },
-  title: {
-    fontWeight: 'bold'
   }
 }

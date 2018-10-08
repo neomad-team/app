@@ -27,17 +27,18 @@ export default class AuthScreen extends Component {
     const formData = new FormData()
     formData.append('email', this.state.email)
     formData.append('password', this.state.password)
-    const postData = {
+    const body = {
       body: formData
     }
     try {
-      const response = await api(url, postData)
+      const response = await api(url, body)
       if (!response.ok) {
         this.setState({ error: 'Please check your email and password' })
         return
       }
-      AsyncStorage.setItem('userId', response.data.id)
-      setGlobalState({userId: response.data.id})
+      const userData = await response.json()
+      AsyncStorage.setItem('userId', userData.id)
+      setGlobalState({userId: userData.id})
       this.props.navigation.navigate('App')
     } catch (error) {
       console.error(error)
@@ -60,7 +61,7 @@ export default class AuthScreen extends Component {
 
         <View style={style.container}>
           <AppConsumer>
-            { (context) => {
+            { context => {
               return <Button
                 icon={style.icon}
                 title='Log in'
