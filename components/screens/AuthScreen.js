@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { AsyncStorage, View } from 'react-native'
 import { Button, FormValidationMessage } from 'react-native-elements'
-import { AppConsumer } from '../../context'
 import FormData from 'FormData'
 
 import Field from '../form/Field'
-
+import { AppConsumer } from '../../static/context'
 import api from '../../static/api'
 import { content } from '../../static/content'
 import { style } from './Style'

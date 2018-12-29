@@ -1,11 +1,10 @@
 import React from 'react'
 import { AsyncStorage, View } from 'react-native'
 import { Button } from 'react-native-elements'
-import { AppConsumer } from '../../context'
 
 import CommunityButton from '../buttons/CommunityButton'
 import Watch from '../geolocalisation/Watch'
-
+import { AppConsumer } from '../../static/context'
 import styles from '../../static/styles'
 import { style } from './Style'
 
