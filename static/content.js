@@ -6,5 +6,9 @@ export const content = {
   loginPath: '/api/login/',
   positionPath: '/api/user/location/',
   welcome: 'Hello',
-  error: 'It seems your password or email are not working'
+  error: {
+    login: 'It seems your password or email are not working',
+    api: 'error on api response',
+    osm: 'error on OSM response'
+  }
 }

@@ -44,7 +44,7 @@ export default class Geolocation extends Component {
     if (response) {
       this.coordinatesToAddress(latitude, longitude)
     } else {
-      this.setState({ status: 'error on api response' })
+      this.setState({ status: content.error.api })
     }
   }
 
@@ -56,7 +56,7 @@ export default class Geolocation extends Component {
         this.setState({ status: `Close to ${data.address.city}` })
       })
       .catch(error => {
-        this.setState({ status: 'error on OSM response' })
+        this.setState({ status: content.error.osm })
         console.error(error)
       })
   }
