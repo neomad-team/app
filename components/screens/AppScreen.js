@@ -7,7 +7,7 @@ import CommunityButton from '../buttons/CommunityButton'
 import Watch from '../geolocalisation/Watch'
 
 import styles from '../../static/styles'
-import { style } from './style'
+import { style } from './Style'
 
 const inline = {
   logout: {

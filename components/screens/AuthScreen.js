@@ -8,7 +8,7 @@ import Field from '../form/Field'
 
 import api from '../../static/api'
 import { content } from '../../static/content'
-import { style } from './style'
+import { style } from './Style'
 
 export default class AuthScreen extends Component {
   constructor () {
