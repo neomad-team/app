@@ -32,7 +32,7 @@ export default class AuthScreen extends Component {
     try {
       const response = await api(url, body)
       if (!response) {
-        this.setState({ error: content.error })
+        this.setState({ error: content.error.login })
         return
       }
       const userData = await response.json()
