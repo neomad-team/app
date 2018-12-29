@@ -7,7 +7,7 @@ import CommunityButton from '../buttons/CommunityButton'
 import Watch from '../geolocalisation/Watch'
 
 import styles from '../../static/styles'
-import { style } from './ScreensStyle'
+import { style } from './style'
 
 const inline = {
   logout: {
@@ -53,7 +53,7 @@ export default class AppScreen extends React.Component {
   render () {
     return (
       <AppConsumer>
-        { context => {
+        {context => {
           return (
             <View style={styles.body}>
               <CommunityButton

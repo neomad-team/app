@@ -4,12 +4,11 @@ import { Button, FormValidationMessage } from 'react-native-elements'
 import { AppConsumer } from '../../context'
 import FormData from 'FormData'
 
-import FieldEmail from '../fields/FieldEmail'
-import FieldPassword from '../fields/FieldPassword'
+import Field from '../form/Field'
 
 import api from '../../static/api'
 import { content } from '../../static/content'
-import { style } from './ScreensStyle'
+import { style } from './style'
 
 export default class AuthScreen extends Component {
   constructor () {
@@ -32,8 +31,8 @@ export default class AuthScreen extends Component {
     }
     try {
       const response = await api(url, body)
-      if (!response.ok) {
-        this.setState({ error: 'Please check your email and password' })
+      if (!response) {
+        this.setState({ error: content.error })
         return
       }
       const userData = await response.json()
@@ -46,22 +45,28 @@ export default class AuthScreen extends Component {
   }
 
   render () {
-    const errorText = <FormValidationMessage>{this.state.error}</FormValidationMessage>
     return (
       <View>
         <View>
-          {this.state.error ? errorText : null}
-          <FieldEmail
-            _onChangeText={(email) => this.setState({email: email})}
+          <Field
+            label='Email'
+            secureTextEntry={false}
+            _onChangeText={email => this.setState({email})}
             value={this.state.email} />
-          <FieldPassword
-            _onChangeText={(password) => this.setState({password: password})}
+          <Field
+            label='Password'
+            secureTextEntry={true}
+            _onChangeText={password => this.setState({password})}
             value={this.state.password} />
+
+            {this.state.error
+              ? <FormValidationMessage>{this.state.error}</FormValidationMessage>
+              : null}
         </View>
 
         <View style={style.container}>
           <AppConsumer>
-            { context => {
+            {context => {
               return <Button
                 icon={style.icon}
                 title='Log in'

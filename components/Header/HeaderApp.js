@@ -3,7 +3,7 @@ import { Header } from 'react-native-elements'
 
 import AvatarApp from './AvatarApp'
 
-import { style } from './HeaderAppStyle'
+import { style } from './Style'
 
 export default class HeaderApp extends PureComponent {
 

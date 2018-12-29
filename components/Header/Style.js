@@ -15,5 +15,11 @@ export const style = {
   },
   header: {
     backgroundColor: color.main
+  },
+  container: {
+    flex: 2,
+    fontWeight: 'bold',
+    marginLeft: -10,
+    marginTop: 2000
   }
 }
