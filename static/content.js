@@ -2,7 +2,7 @@ export const content = {
   title: 'NEOMAD',
   url: 'http://localhost:5000',
   osmUrl: 'https://nominatim.openstreetmap.org',
-  imgPath: '/static/uploads/avatars/',
+  imgPath: '/static/uploads/avatars',
   loginPath: '/api/login/',
   positionPath: '/api/user/location/',
   welcome: 'Hello',
