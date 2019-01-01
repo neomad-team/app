@@ -3,11 +3,12 @@ export const content = {
   url: 'http://localhost:5000',
   osmUrl: 'https://nominatim.openstreetmap.org',
   imgPath: '/static/uploads/avatars',
-  loginPath: '/api/login',
-  positionPath: '/api/user/location',
+  loginPath: '/api/login/',
+  positionPath: '/api/user/location/',
   welcome: 'Hello',
   error: {
-    email: 'Check your email format',
-    password: 'It seems your password or email are not working'
+    login: 'It seems your password or email are not working',
+    api: 'error on api response',
+    osm: 'error on OSM response'
   }
 }

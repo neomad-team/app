@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CheckBox } from 'react-native-elements'
 
-import { style } from './CommunityButtonStyle'
+import { style } from './Style'
 
 export default class CommunityButton extends Component {
 

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Avatar } from 'react-native-elements'
 
-import { style } from './AvatarAppStyle'
+import { style } from './Style'
 import { content } from '../../static/content'
 
 export default class AvatarApp extends PureComponent {
